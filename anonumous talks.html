@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SnapTalks – Feel. Confess. Inspire.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
+  <meta name="description" content="Share and read emotional anonymous confessions and quotes, go viral on Instagram, and express yourself safely." />
+  <style>
+    :root {
+      --pink: #f9e5ef;
+      --purple: #a18cd1;
+      --black: #252525;
+      --white: #fff;
+      --shadow: 0 3px 12px #0001;
+      --radius: 22px;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, var(--pink) 70%, var(--purple) 100%);
+      color: var(--black);
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      letter-spacing: 0.01em;
+    }
+    header {
+      background: rgba(255, 255, 255, 0.85);
+      text-align: center;
+      padding: 1.5em 0 1em 0;
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 11;
+    }
+    header h1 {
+      color: var(--purple);
+      font-weight: 700;
+      font-size: 2em;
+      letter-spacing: 0.03em;
+      margin: 0;
+    }
+    nav {
+      margin: 1em 0 0.5em 0;
+      display: flex;
+      gap: 1em;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    nav button {
+      background: var(--purple);
+      color: #fff;
+      font-size: 1.05em;
+      border: none;
+      border-radius: 40px;
+      padding: 0.55em 1.4em;
+      cursor: pointer;
+      font-weight: 500;
+      margin-bottom: 0.5em;
+      outline: none;
+      transition: background 0.2s;
+    }
+    nav button.active,
+    nav button:hover {
+      background: var(--black);
+      color: #fff;
+    }
+    .adsense-top,
+    .adsense-bottom {
+      min-height: 48px;
+      text-align: center;
+      padding: 8px 0;
+      opacity: 0.8;
+      font-size: 0.95em;
+      background: linear-gradient(90deg, #f9e5ef 60%, #a18cd1 100%);
+      color: #737;
+      border-radius: 16px;
+      margin: 10px 0;
+      border: 1px dashed #f6d1f1;
+    }
+    .container {
+      max-width: 710px;
+      margin: 2em auto;
+      padding: 0 1em;
+    }
+    .card {
+      background: #fff;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin-bottom: 1.4em;
+      padding: 1.25em 1.5em;
+      position: relative;
+      font-size: 1.1em;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25em;
+      word-break: break-word;
+    }
+    .emoji {
+      font-size: 1.7em;
+      margin-right: 0.6em;
+      vertical-align: middle;
+    }
+    .section-title {
+      font-size: 1.28em;
+      font-weight: 600;
+      margin-top: 1.4em;
+      color: var(--purple);
+    }
+    .confessions-list,
+    .quotes-grid,
+    .stories-grid,
+    .vault-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.1em;
+    }
+    .reaction-bar {
+      display: flex;
+      gap: 1em;
+      margin-top: 0.3em;
+      font-size: 1.07em;
+    }
+    .reaction-bar span {
+      cursor: pointer;
+      padding: 0.12em 0.35em;
+      font-weight: 500;
+      border-radius: 10px;
+      user-select: none;
+    }
+    .reaction-bar span:hover {
+      background: #f5f1f7;
+    }
+    .actions-bar {
+      margin-top: 0.7em;
+      display: flex;
+      gap: 0.7em;
+      flex-wrap: wrap;
+    }
+    .actions-bar button,
+    .insta-btn {
+      border: none;
+      background: var(--purple);
+      color: #fff;
+      font-weight: 500;
+      border-radius: 30px;
+      padding: 0.32em 1.1em;
+      cursor: pointer;
+      font-size: 0.98em;
+      outline: none;
+      transition: background 0.19s;
+    }
+    .actions-bar button:hover,
+    .insta-btn:hover {
+      background: var(--black);
+    }
+    .post-day {
+      background: linear-gradient(90deg, #a18cd1 60%, #f9e5ef 100%);
+      color: var(--black);
+      border-radius: var(--radius);
+      padding: 0.95em 1.3em;
+      font-size: 1.13em;
+      font-weight: 600;
+      box-shadow: var(--shadow);
+      margin: 0.6em 0 1.6em 0;
+      display: flex;
+      align-items: center;
+      gap: 0.9em;
+      justify-content: center;
+      word-break: break-word;
+    }
+    /* Carousel */
+    .carousel {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .carousel-quote {
+      background: #fff;
+      border-radius: var(--radius);
+      font-size: 1.12em;
+      min-width: 210px;
+      max-width: 90vw;
+      box-shadow: var(--shadow);
+      padding: 1em 1em 0.8em 1em;
+      margin: 0 0.75em;
+      display: flex;
+      gap: 0.7em;
+      align-items: center;
+      justify-content: center;
+      word-break: break-word;
+    }
+    .carousel button {
+      background: #dadada;
+      border: none;
+      border-radius: 50%;
+      width: 31px;
+      height: 31px;
+      font-size: 1.2em;
+      cursor: pointer;
+      outline: none;
+      margin: 0 10px;
+      user-select: none;
+      line-height: 26px;
+    }
+    .carousel button:hover {
+      background: var(--purple);
+      color: #fff;
+    }
+    .featured-story {
+      padding: 1.1em 1.1em 0.8em 1.1em;
+      border-radius: var(--radius);
+      background: #fff;
+      box-shadow: var(--shadow);
+      margin-bottom: 1.4em;
+      word-break: break-word;
+    }
+    .featured-story .story-title {
+      font-weight: 600;
+      font-size: 1.07em;
+      color: var(--purple);
+      margin-bottom: 0.3em;
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+    }
+    .featured-story .story-content {
+      color: #343;
+      font-size: 0.99em;
+      margin-bottom: 0.3em;
+    }
+    .read-more {
+      border: none;
+      background: var(--purple);
+      color: #fff;
+      font-weight: 500;
+      padding: 0.29em 1em;
+      border-radius: 30px;
+      cursor: pointer;
+      margin-top: 0.5em;
+      user-select: none;
+    }
+    .reel-card {
+      margin: 1.4em auto;
+      background: #171426;
+      border-radius: var(--radius);
+      color: #fff;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      padding: 1em 1.3em;
+      font-size: 1em;
+      gap: 1em;
+      justify-content: flex-start;
+      min-height: 90px;
+      word-break: break-word;
+    }
+    .reel-preview {
+      border-radius: 10px;
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+    }
+    .reel-card a {
+      color: var(--pink);
+      text-decoration: underline;
+      margin-left: 1em;
+      font-weight: 600;
+      user-select: text;
+    }
+    .cta-main {
+      display: block;
+      margin: 1.2em auto 1.8em auto;
+      background: var(--purple);
+      color: #fff;
+      font-weight: 600;
+      font-size: 1.15em;
+      border: none;
+      border-radius: 40px;
+      padding: 0.85em 2.4em;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.17s;
+      box-shadow: var(--shadow);
+      user-select: none;
+    }
+    .cta-main:hover {
+      background: var(--black);
+    }
+    .filter-bar {
+      margin: 0.7em 0 1em 0;
+      display: flex;
+      gap: 0.7em;
+      flex-wrap: wrap;
+    }
+    .filter-bar button {
+      border: 1px solid #a18cd1;
+      color: var(--purple);
+      background: var(--white);
+      font-size: 0.97em;
+      border-radius: 18px;
+      padding: 0.20em 1.02em;
+      cursor: pointer;
+      user-select: none;
+    }
+    .filter-bar button.active,
+    .filter-bar button:hover {
+      background: var(--purple);
+      color: #fff;
+    }
+    .form-tabs {
+      display: flex;
+      gap: 1em;
+      justify-content: center;
+      margin-bottom: 0.8em;
+    }
+    .form-tabs button {
+      background: #f3dddd;
+      color: var(--black);
+      border: none;
+      font-size: 1em;
+      padding: 0.33em 1.2em;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 500;
+      user-select: none;
+    }
+    .form-tabs button.active,
+    .form-tabs button:hover {
+      background: var(--purple);
+      color: #fff;
+    }
+    .form-box {
+      background: #fefefe;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.3em;
+      margin-bottom: 1.6em;
+    }
+    .form-box label {
+      font-weight: 500;
+    }
+    .form-box textarea,
+    .form-box input[type='text'] {
+      width: 100%;
+      border-radius: 18px;
+      border: 1.4px solid #e8bddd;
+      min-height: 2.6em;
+      padding: 0.7em;
+      font-size: 1em;
+      margin-bottom: 0.8em;
+      font-family: inherit;
+      resize: vertical;
+    }
+    .emoji-selector {
+      display: flex;
+      gap: 1em;
+      font-size: 1.4em;
+      margin-bottom: 0.5em;
+      margin-top: 0.3em;
+      user-select: none;
+    }
+    .emoji-selector span {
+      cursor: pointer;
+      transition: scale 0.12s;
+      padding: 0 0.09em;
+      user-select: none;
+    }
+    .emoji-selector span.selected,
+    .emoji-selector span:hover {
+      scale: 1.22;
+      border-bottom: 2px solid var(--purple);
+      background: rgba(161, 140, 209, 0.15);
+      border-radius: 8px;
+    }
+    .success-msg {
+      background: #f1eefb;
+      color: var(--purple);
+      border-left: 4px solid var(--purple);
+      border-radius: 22px;
+      font-weight: 600;
+      margin: 1em 0;
+      padding: 1em 1.1em;
+    }
+    .quotes-grid .card,
+    .confessions-list .card,
+    .stories-grid .card,
+    .vault-list .card {
+      padding: 1.1em 0.9em 1em 1.1em;
+      font-size: 0.99em;
+      word-break: break-word;
+    }
+    .quote-category {
+      display: inline-block;
+      font-size: 0.91em;
+      color: var(--purple);
+      background: #f4e1f3;
+      border-radius: 999px;
+      padding: 0.06em 0.7em;
+      margin-left: 0.5em;
+      user-select: none;
+    }
+    .story-title {
+      font-weight: 700;
+      color: var(--purple);
+    }
+    .story-preview {
+      color: #474;
+      font-size: 0.99em;
+    }
+    .story-content {
+      margin-top: 0.6em;
+      color: #202;
+      font-size: 1em;
+    }
+    .off-topic-box {
+      background: #fff9fc;
+      border-radius: 18px;
+      box-shadow: 0 2px 7px #eeb2da33;
+      margin: 1.5em 0 0.5em 0;
+      padding: 1em 0.8em 0.75em 1.2em;
+      font-size: 0.99em;
+      font-style: italic;
+      position: relative;
+      color: #804055;
+      border-left: 6px solid #efb8dc;
+      display: flex;
+      align-items: center;
+      gap: 0.7em;
+      word-break: break-word;
+    }
+    .off-topic-box .tag {
+      background: #ddd2e7;
+      border-radius: 9px;
+      font-size: 0.93em;
+      color: #a18cd1;
+      font-weight: 500;
+      padding: 0.15em 0.7em;
+      margin-right: 0.7em;
+      user-select: none;
+    }
+    .vault-locked {
+      text-align: center;
+      background-color: #fdf6fa;
+      margin-top: 2em;
+      padding: 1.5em 0.9em;
+      border-radius: var(--radius);
+      border: 2.4px dashed #d5afd5;
+      color: #a18cd1;
+      font-size: 1.25em;
+      font-weight: 600;
+      max-width: 420px;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: var(--shadow);
+      user-select: none;
+    }
+    .vault-btn {
+      margin: 1em auto;
+      font-size: 1.04em;
+      padding: 0.8em 1.7em;
+      background: var(--purple);
+      color: #fff;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: 500;
+      display: block;
+      user-select: none;
+    }
+    .info-section,
+    .people-say-section {
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 2.5px 12px #af5ab744;
+      padding: 1.2em 1em 1em 1.12em;
+      margin-bottom: 1.4em;
+      word-break: break-word;
+    }
+    .info-section h3,
+    .people-say-section h3 {
+      margin-top: 0;
+      color: var(--purple);
+      user-select: none;
+    }
+    .people-say-sub {
+      color: #b76b8b;
+      font-style: italic;
+      font-size: 0.99em;
+      margin-bottom: 0.6em;
+      user-select: none;
+    }
+    footer {
+      margin-top: 2.4em;
+      padding: 2em 1em 1.3em 1em;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.93);
+      font-size: 0.99em;
+      color: #646464;
+      border-top: 1.5px solid #e7dbe4;
+      user-select: none;
+    }
+    .footer-links a {
+      color: var(--purple);
+      text-decoration: none;
+      margin: 0 0.8em;
+      font-weight: 500;
+      cursor: pointer;
+      user-select: text;
+    }
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+    .footer-insta {
+      display: block;
+      font-size: 1.11em;
+      font-weight: 600;
+      color: var(--black);
+      user-select: text;
+    }
+    .footer-affiliate {
+      margin-top: 1.2em;
+    }
+    .footer-affiliate a {
+      color: #d63384;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 1.05em;
+      cursor: pointer;
+      user-select: text;
+    }
+    .footer-affiliate a:hover {
+      text-decoration: underline;
+    }
+    .modal-bg {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(36, 0, 56, 0.13);
+      z-index: 60;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-bg.active {
+      display: flex;
+    }
+    .modal-content {
+      background: #fff;
+      padding: 2em 2.5em;
+      border-radius: 25px;
+      box-shadow: 0 10px 40px #0002;
+      text-align: center;
+      position: relative;
+      max-width: 90vw;
+      word-break: break-word;
+      user-select: none;
+    }
+    .modal-content img {
+      max-width: 340px;
+      width: 100%;
+      border-radius: 18px;
+      box-shadow: 0 2.4px 10px #a18cd188;
+      user-select: none;
+    }
+    .modal-content button {
+      margin-top: 1em;
+      cursor: pointer;
+      user-select: none;
+    }
+    .modal-close {
+      position: absolute;
+      top: 0.8em;
+      right: 1.2em;
+      background: none;
+      border: none;
+      font-size: 1.7em;
+      color: var(--purple);
+      cursor: pointer;
+      user-select: none;
+      line-height: 1em;
+    }
+    @media (max-width: 800px) {
+      .container {
+        max-width: 97vw;
+      }
+    }
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.3em;
+      }
+      .confessions-list,
+      .quotes-grid,
+      .stories-grid,
+      .vault-list {
+        grid-template-columns: 1fr;
+      }
+      .modal-content {
+        padding: 1em 0.2em;
+      }
+    }
+    @media (max-width: 440px) {
+      .adsense-bottom,
+      .adsense-top {
+        font-size: 0.91em;
+      }
+      header {
+        padding: 0.95em 0;
+      }
+      .post-day {
+        font-size: 0.9em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>SnapTalks – Feel. Confess. Inspire.</h1>
+    <nav>
+      <button class="tab-btn active" data-tab="home">🏡 Home</button>
+      <button class="tab-btn" data-tab="submit">📝 Submit</button>
+      <button class="tab-btn" data-tab="quotes">💬 Quotes</button>
+      <button class="tab-btn" data-tab="stories">📚 Stories</button>
+      <button class="tab-btn" data-tab="vault">🔒 Vault</button>
+    </nav>
+  </header>
+  <div class="adsense-top" id="adsense-top">[AdSense Banner]</div>
+  <div class="container">
+    <div id="page-home" class="tab-page"></div>
+    <div id="page-submit" class="tab-page" style="display:none"></div>
+    <div id="page-quotes" class="tab-page" style="display:none"></div>
+    <div id="page-stories" class="tab-page" style="display:none"></div>
+    <div id="page-vault" class="tab-page" style="display:none"></div>
+  </div>
+  <div class="adsense-bottom" id="adsense-bottom">[AdSense Footer]</div>
+  <!-- Insta Post Modal -->
+  <div class="modal-bg" id="modal-bg">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal()">&times;</button>
+      <img id="modal-img" src="" alt="Instagram Post" />
+      <br />
+      <button onclick="downloadModalImg()">Download</button>
+    </div>
+  </div>
+  <footer>
+    <div class="footer-links">
+      <a href="#" onclick="alert('SnapTalks lets you express what you feel. All content is user-submitted anonymously. Contact: hello@snap-talks.in')">About</a> |
+      <a href="mailto:hello@snap-talks.in">Contact</a> |
+      <a href="https://instagram.com/snapTalks.in" target="_blank" rel="noopener noreferrer">Instagram</a> |
+      <a href="#" onclick="alert('This is a sample site for emotional content. All content is for inspiration only. Terms apply.')">Terms</a>
+    </div>
+    <div class="footer-insta">Follow us on Instagram <strong>@SnapTalks.in</strong> for daily quotes &amp; reels!</div>
+    <div class="footer-affiliate">
+      <a href="https://www.amazon.in/dp/B0BKTZRHHV" target="_blank" rel="noopener noreferrer">Buy Love Journal</a> (affiliate) – Write your feelings privately.
+    </div>
+  </footer>
+
+  <script>
+    // ========== SAMPLE DATA ===================
+    const confessions = [
+      { id: 1, text: "I secretly love my best friend. ❤️", emoji: "❤️", reactions: { love: 504, cry: 34, fire: 121, thought: 42 } },
+      { id: 2, text: "Sometimes I cry myself to sleep.", emoji: "😭", reactions: { love: 144, cry: 322, fire: 12, thought: 99 } },
+      { id: 3, text: "I pretend I'm happy, but inside I’m shattered.", emoji: "💔", reactions: { love: 121, cry: 222, fire: 13, thought: 56 } },
+      { id: 4, text: "We broke up and I still stalk her profile.", emoji: "👀", reactions: { love: 92, cry: 166, fire: 55, thought: 70 } },
+      { id: 5, text: "I wish my parents understood my pain.", emoji: "😔", reactions: { love: 135, cry: 143, fire: 22, thought: 84 } },
+      { id: 6, text: "I’m scared everyone will leave me.", emoji: "😢", reactions: { love: 115, cry: 139, fire: 14, thought: 62 } },
+      { id: 7, text: "I pretend to be tough but I feel so alone.", emoji: "🥀", reactions: { love: 99, cry: 201, fire: 9, thought: 71 } },
+      { id: 8, text: "I still wait for a text that will never come.", emoji: "💭", reactions: { love: 110, cry: 109, fire: 12, thought: 58 } }
+    ];
+    const quotes = [
+      { id: 1, text: "Real love is crying, fighting, yet never giving up.", category: "Love", emoji: "💞" },
+      { id: 2, text: "Not every pain is visible. Be kind.", category: "Life", emoji: "💭" },
+      { id: 3, text: "True strength is smiling through the scars.", category: "Life", emoji: "💪" },
+      { id: 4, text: "Distance means so little when someone means so much.", category: "Love", emoji: "🫀" },
+      { id: 5, text: "Sometimes, letting go is the best way to love yourself.", category: "Sad", emoji: "🌧️" },
+      { id: 6, text: "Nee Prema neeku ardhamavutundani korukuntunna.", category: "Telugu", emoji: "❤️‍🔥" },
+      { id: 7, text: "Never beg for a spot in someone’s life.", category: "Sad", emoji: "✨" },
+      { id: 8, text: "Chinndaga unnappude gelavalani korikalu ekkuva.", category: "Telugu", emoji: "🌸" },
+      { id: 9, text: "Forgive yourself for the love you gave to the wrong people.", category: "Life", emoji: "🤍" },
+      { id: 10, text: "Nijamaina prema oka nimisham lo maaradu.", category: "Telugu", emoji: "🌼" }
+    ];
+    const stories = [
+      { id: 1, title: "Unsent Letters", preview: "Every morning I rewrite the text...", content: "Every morning I rewrite the text, but never send it — just to feel closeness, even if just in my head.", emoji: "✉️", reactions: { love: 320, cry: 42, fire: 11, thought: 23 } },
+      { id: 2, title: "Broken Promises", preview: "I trusted him with everything...", content: "I trusted him with everything but he left without a word. My heart still waits for closure.", emoji: "💔", reactions: { love: 255, cry: 38, fire: 9, thought: 18 } },
+      { id: 3, title: "The Secret Diary", preview: "If you ever read my diary, you’ll know...", content: "If you ever read my diary, you’ll know how many nights I cried for you and how much I wish things could be different.", emoji: "📓", reactions: { love: 180, cry: 27, fire: 4, thought: 17 } },
+      { id: 4, title: "Lost and Found", preview: "After all my struggles, I found myself...", content: "After all my struggles, I found myself in self-love and that’s been my biggest win.", emoji: "🌷", reactions: { love: 99, cry: 8, fire: 6, thought: 7 } },
+      { id: 5, title: "Dreams in Telugu", preview: "Kalalu lo nuvvu, nidra lo nenu...", content: "Kalalu lo nuvvu, nidra lo nenu. Idi prema kadha?", emoji: "🌙", reactions: { love: 90, cry: 2, fire: 6, thought: 8 } },
+      { id: 6, title: "Silent Battles", preview: "No one knows what I deal with...", content: "No one knows what I deal with every day, but I fight because giving up is not my story.", emoji: "🦋", reactions: { love: 77, cry: 15, fire: 2, thought: 9 } }
+    ];
+    const vaultConfessions = [
+      { id: 1, text: "One day, I pretended to be okay but I was breaking inside.", emoji: "🖤" },
+      { id: 2, text: "Sometimes I wonder if I'll ever heal.", emoji: "😶‍🌫️" },
+      { id: 3, text: "I send myself flowers, so no one knows I have no one.", emoji: "💐" },
+      { id: 4, text: "The pain I hide is bigger than anyone knows.", emoji: "😔" },
+      { id: 5, text: "I wish someone could hear my unsaid screams.", emoji: "🌑" },
+      { id: 6, text: "I act funny so people don't see my darkness.", emoji: "😶" },
+      { id: 7, text: "He hurt me but I still love him.", emoji: "🥀" },
+      { id: 8, text: "I keep secrets even from myself.", emoji: "🔒" },
+      { id: 9, text: "I’ve thought about giving up more than once.", emoji: "💔" },
+      { id: 10, text: "Each day I pretend to be strong for my family.", emoji: "🦾" },
+      { id: 11, text: "Wish I could run far away and disappear.", emoji: "🚶‍♂️" },
+      { id: 12, text: "My smile is my best lie.", emoji: "🤥" },
+      { id: 13, text: "Sometimes my pillow knows my pain best.", emoji: "🛏️" },
+      { id: 14, text: "There’s a me no one knows.", emoji: "🖤" },
+      { id: 15, text: "Faking happiness is exhausting.", emoji: "😵" },
+      { id: 16, text: "Wishing I was somebody else.", emoji: "🕳️" },
+      { id: 17, text: "I regret not loving myself sooner.", emoji: "💧" },
+      { id: 18, text: "Love never knocked twice on my door.", emoji: "🚪" },
+      { id: 19, text: "I miss you even though you never noticed.", emoji: "🍃" },
+      { id: 20, text: "If only tears could speak.", emoji: "🥲" }
+    ];
+    // Off-topic (fun unrelated posts)
+    const sayOffTopic = [
+      'I love biryani more than anything!',
+      'Today my phone fell in water 😭',
+      'Send memes please!',
+      'I wish I could fly like a bird!',
+      'Did anyone watch the cricket final?',
+      'Why is Monday so long...'
+    ];
+    // Insta Reels/Post sample placeholders
+    const sampleReels = [
+      { img: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=300&q=80", text: "Love heals. Cry, but don’t quit.", link: "https://instagram.com/snapTalks.in" },
+      { img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=300&q=80", text: "Your pain can inspire someone.", link: "https://instagram.com/snapTalks.in" },
+      { img: "https://images.unsplash.com/photo-1519985176271-adb1088fa94c?auto=format&fit=crop&w=300&q=80", text: "Let feelings flow. #snapTalks", link: "https://instagram.com/snapTalks.in" }
+    ];
+
+    // Combined for daily "Post of the Day"
+    const samplePostOfDay = [...confessions, ...quotes].sort(() => Math.random() - 0.5)[0];
+
+    // === TAB NAVIGATION ===
+    const tabBtns = document.querySelectorAll(".tab-btn");
+    const tabs = ["home", "submit", "quotes", "stories", "vault"];
+    tabBtns.forEach((btn) => {
+      btn.onclick = function () {
+        setTab(btn.dataset.tab);
+      };
+    });
+    function setTab(tab) {
+      tabs.forEach((t) => {
+        document.getElementById("page-" + t).style.display = t === tab ? "block" : "none";
+        document.querySelector('.tab-btn[data-tab="' + t + '"]').classList.toggle("active", t === tab);
+      });
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+      if (tab === "quotes") renderQuotesGrid();
+      if (tab === "stories") renderStoriesGrid();
+      if (tab === "vault") renderVault();
+      if (tab === "home") renderHome();
+      if (tab === "submit") setupSubmitForms();
+    }
+
+    // === USER POSTS (24h localStorage) ===
+    function getRecentUserPosts() {
+      let posts = [];
+      try {
+        posts = JSON.parse(localStorage.getItem("userSubmissions") || "[]");
+      } catch (e) {
+        posts = [];
+      }
+      const now = Date.now();
+      // Remove expired from storage
+      let changed = false;
+      posts = posts.filter((p) => {
+        let ok = now - p.ts < 86400000;
+        if (!ok) changed = true;
+        return ok;
+      });
+      if (changed) localStorage.setItem("userSubmissions", JSON.stringify(posts));
+      return posts;
+    }
+
+    // === HOME PAGE ===
+    function renderHome() {
+      const container = document.getElementById("page-home");
+      const trending = [...confessions].sort(() => Math.random() - 0.5).slice(0, 6);
+      const dailyQuotes = [...quotes].sort(() => Math.random() - 0.5).slice(0, 4);
+      const featuredStory = stories[Math.floor(Math.random() * stories.length)];
+      const reel = sampleReels[Math.floor(Math.random() * sampleReels.length)];
+      const say = sayOffTopic[Math.floor(Math.random() * sayOffTopic.length)];
+      const recentPosts = getRecentUserPosts();
+      let userPostsHTML = "";
+      if (recentPosts.length) {
+        userPostsHTML = `
+      <div class="section-title">🆕 Submitted by You (visible on this device for 24h)</div>
+      <div class="confessions-list">
+      ${recentPosts
+        .slice()
+        .reverse()
+        .map((p) => {
+          let mainTxt = escapeHTML(p.text || p.title || "");
+          let postType = (p.type || "confess").toUpperCase();
+          return `
+        <div class="card">
+          <div><span class="emoji">${p.emoji || "💬"}</span>
+            <span>${mainTxt}</span>
+            <span class="quote-category" style="margin-left:.6em">${postType}</span>
+          </div>
+          <div class="actions-bar">
+            <button onclick="shareText('UserPost',\`${mainTxt}\`)">Share</button>
+            <button onclick="generateInstaPost('${mainTxt.replace(/'/g, "").replace(/\n/g, " ")}')">Insta Post</button>
+          </div>
+        </div>`;
+        })
+        .join("")}
+      </div>`;
+      }
+      container.innerHTML = `
+    <div class="post-day">
+      <span>⭐️ Post of the Day:</span>
+      <span>${samplePostOfDay.emoji || ""}</span>
+      <span>${samplePostOfDay.text ? samplePostOfDay.text : samplePostOfDay.title}</span>
+    </div>
+    ${userPostsHTML}
+    <div class="section-title">🔥 Trending Confessions</div>
+    <div class="confessions-list">
+      ${trending
+        .map(
+          (c) => `
+        <div class="card">
+          <div><span class="emoji">${c.emoji}</span> <span>${c.text}</span></div>
+          <div class="reaction-bar">
+            <span onclick="incReaction(${c.id},'confession','love')">❤️ ${c.reactions.love}</span>
+            <span onclick="incReaction(${c.id},'confession','cry')">😭 ${c.reactions.cry}</span>
+            <span onclick="incReaction(${c.id},'confession','fire')">🔥 ${c.reactions.fire}</span>
+            <span onclick="incReaction(${c.id},'confession','thought')">💭 ${c.reactions.thought}</span>
+          </div>
+          <div class="actions-bar">
+            <button onclick="shareText('Confession', \`${c.text}\`)">Share</button>
+          </div>
+        </div>`
+        )
+        .join("")}
+    </div>
+    <div class="section-title">💬 Daily Love & Pain Quotes</div>
+    <div class="carousel" id="quote-carousel"></div>
+    <div class="section-title">📚 Featured Story of the Day</div>
+    <div class="featured-story">
+      <div class="story-title">${featuredStory.title} <span>${featuredStory.emoji}</span></div>
+      <div class="story-content">${featuredStory.preview}</div>
+      <button class="read-more" onclick="showFullStory(${featuredStory.id})">Read full story</button>
+    </div>
+    <div class="section-title">🎥 Reel of the Day</div>
+    <div class="reel-card">
+      <img class="reel-preview" src="${reel.img}" loading="lazy" />
+      <div>
+        <b>${reel.text}</b><br />
+        <a href="${reel.link}" target="_blank" rel="noopener noreferrer">Watch on Instagram &rarr;</a>
+      </div>
+    </div>
+    <a class="cta-main" href="#" onclick="setTab('submit');return false;">Submit Your Secret</a>
+    <div class="off-topic-box">
+      <span class="tag">[Not Related]</span>
+      <span class="text">"${say}"</span>
+    </div>
+    <div class="info-section">
+      <h3>More Information</h3>
+      <div>SnapTalks is a space to express feelings — anonymously, kindly, and safely. All posts are user submitted and meant for inspiration or emotional expression.</div>
+      <div style="margin-top:.6em;color:#b76b8b;font-size:.94em;">
+        Feeling low or want to go viral? Share your story or quote, and see it featured on our Insta @SnapTalks.in!<br />
+        <strong>Don't abuse, don't spam. Stay kind.</strong>
+      </div>
+    </div>
+    `;
+      setupQuoteCarousel(dailyQuotes);
+    }
+
+    // === QUOTES CAROUSEL ON HOME ===
+    function setupQuoteCarousel(quotesList) {
+      let idx = 0;
+      const el = document.getElementById("quote-carousel");
+      function render() {
+        const q = quotesList[idx];
+        el.innerHTML = `
+      <button onclick="prevQ()" aria-label="Prev">⟨</button>
+      <div class="carousel-quote">
+        <span class="emoji">${q.emoji}</span>
+        <span>${q.text}</span>
+        <span class="quote-category">${q.category}</span>
+      </div>
+      <button onclick="nextQ()" aria-label="Next">⟩</button>
+      <button class="insta-btn" onclick="generateInstaPost('${escapeHTML(q.text)}')">Insta Post</button>`;
+      }
+      function prevQ() {
+        idx = (idx - 1 + quotesList.length) % quotesList.length;
+        render();
+      }
+      function nextQ() {
+        idx = (idx + 1) % quotesList.length;
+        render();
+      }
+      window.prevQ = prevQ;
+      window.nextQ = nextQ;
+      render();
+    }
+
+    // === SUBMIT PAGE ===
+    let submitTab = "confess";
+    function setupSubmitForms() {
+      const cont = document.getElementById("page-submit");
+      cont.innerHTML = `
+    <div class="form-tabs">
+      <button onclick="switchSubmitTab('confess')" class="${submitTab == "confess" ? "active" : ""}">Confess Something</button>
+      <button onclick="switchSubmitTab('story')" class="${submitTab == "story" ? "active" : ""}">Tell Your Story</button>
+      <button onclick="switchSubmitTab('quote')" class="${submitTab == "quote" ? "active" : ""}">Share a Quote</button>
+    </div>
+    <div class="form-box" id="form-box"></div>
+    <div class="people-say-section">
+      <h3>People say something (Off-topic)</h3>
+      <div class="people-say-sub">Not related but fun! Anyone can post random thoughts…</div>
+      <div id="offtopic-list"></div>
+      <input type="text" id="offtopic-input" maxlength="80" placeholder="Say something not related..." />
+      <button onclick="postOffTopic()">Post</button>
+    </div>
+    `;
+      renderFormBox();
+      renderOffTopicList();
+    }
+    function switchSubmitTab(tab) {
+      submitTab = tab;
+      setupSubmitForms();
+    }
+    function renderFormBox() {
+      const emojis = {
+        confess: ["❤️", "😭", "💔", "👀", "😔", "😢", "🥀", "💭"],
+        story: ["✉️", "💔", "📓", "🌷", "🌙", "🦋"],
+        quote: ["💞", "💭", "💪", "🫀", "🌧️", "❤️‍🔥", "✨", "🌸", "🤍", "🌼"]
+      };
+      const emojiList = emojis[submitTab] || ["💬"];
+      let fields, placeholder, min, max;
+      if (submitTab == "confess") {
+        fields = "Confess (max 120 chars):";
+        placeholder = "E.g. I miss you every day.";
+        min = 8; max = 120;
+      } else if (submitTab == "story") {
+        fields = "Your Story (max 400 chars):";
+        placeholder = "Share your story...";
+        min = 30; max = 400;
+      } else {
+        fields = "Your Quote (max 100 chars):";
+        placeholder = "E.g. Pain teaches you to grow.";
+        min = 7; max = 100;
+      }
+      document.getElementById("form-box").innerHTML = `
+    <div><b>Share anonymously.</b> No login, fully safe.</div>
+    <label>${fields}</label><br />
+    <textarea id="submit-input" rows="3" maxlength="${max}" placeholder="${placeholder}"></textarea>
+    <div style="margin:.5em 0;">Choose feeling:
+      <span class="emoji-selector" id="emoji-selector"></span>
+    </div>
+    <button onclick="submitForm()" style="margin-top:.4em">Share Now</button>
+    <div style="font-size:.93em;color:#bbb;margin-top:.3em;">${fakeSecretsCount()} secrets shared this week!</div>
+    <div id="form-success"></div>
+    `;
+      let sel = emojiList[0];
+      for (const e of emojiList) {
+        document.getElementById("emoji-selector").innerHTML += `<span class="${e == sel ? "selected" : ""}" onclick="chooseEmoji(this,'${e}')">${e}</span>`;
+      }
+      window._chosenEmoji = sel;
+    }
+    function chooseEmoji(el, emoji) {
+      window._chosenEmoji = emoji;
+      for (const s of document.getElementById("emoji-selector").children) {
+        s.classList.toggle("selected", s.textContent == emoji);
+      }
+    }
+    function submitForm() {
+      const txt = document.getElementById("submit-input").value.trim();
+      if (!txt) return alert("Type something!");
+      const emoji = window._chosenEmoji || "❤️‍🔥";
+      let min = 8, max = 140, type = submitTab;
+      if (type == "confess") { min = 8; max = 120; }
+      if (type == "story") { min = 30; max = 400; }
+      if (type == "quote") { min = 7; max = 100; }
+      if (txt.length < min) return alert(`Too short! Minimum ${min} chars.`);
+      if (txt.length > max) return alert(`Too long! Maximum ${max} chars.`);
+      let newPost = { type: type, text: txt, emoji: emoji, ts: Date.now() };
+      let posts = [];
+      try {
+        posts = JSON.parse(localStorage.getItem("userSubmissions") || "[]");
+      } catch (e) { }
+      posts.push(newPost);
+      localStorage.setItem("userSubmissions", JSON.stringify(posts));
+      document.getElementById("form-success").innerHTML =
+        `<div class="success-msg">Thanks for sharing! Your story matters 💖<br>Your post will appear on homepage for 24 hours (this device only).</div>`;
+      setTimeout(() => { setTab("home"); }, 2100);
+    }
+    function fakeSecretsCount() {
+      return (23000 + Math.floor(Math.random() * 900) + Math.floor(Date.now() / (1000 * 60 * 60 * 7))).toLocaleString();
+    }
+    window.offTopicArr = [...sayOffTopic];
+    function renderOffTopicList() {
+      const l = document.getElementById("offtopic-list");
+      l.innerHTML = window.offTopicArr.slice(-4).reverse().map(t =>
+        `<div class="off-topic-box"><span class="tag">[Not Related]</span> <span class="text">"${escapeHTML(t)}"</span></div>`
+      ).join("");
+    }
+    function postOffTopic() {
+      const val = document.getElementById("offtopic-input").value.trim();
+      if (!val) return;
+      window.offTopicArr.push(val);
+      document.getElementById("offtopic-input").value = "";
+      renderOffTopicList();
+    }
+
+    // === QUOTES PAGE ===
+    let quotesFilter = "All";
+    function renderQuotesGrid() {
+      const cont = document.getElementById("page-quotes");
+      const categories = [...new Set(quotes.map(q => q.category))];
+      cont.innerHTML = `
+    <div class="section-title">💬 Emotional Quotes</div>
+    <div class="filter-bar">
+      <button class="${quotesFilter == "All" ? "active" : ""}" onclick="setQuotesFilter('All')">All</button>
+      ${categories.map(cat =>
+        `<button class="${quotesFilter == cat ? "active" : ""}" onclick="setQuotesFilter('${cat}')">${cat}</button>`
+      ).join("")}
+    </div>
+    <div class="quotes-grid" id="quotes-grid"></div>
+    `;
+      updateQuotesGrid();
+    }
+    function setQuotesFilter(f) {
+      quotesFilter = f;
+      renderQuotesGrid();
+    }
+    function updateQuotesGrid() {
+      let qlist = quotes;
+      if (quotesFilter != "All") {
+        qlist = quotes.filter(q => q.category == quotesFilter);
+      }
+      const grid = document.getElementById("quotes-grid");
+      grid.innerHTML = qlist.slice(0, 20).map(q => `
+    <div class="card">
+      <div><span class="emoji">${q.emoji}</span> <span>${q.text}</span></div>
+      <div class="quote-category">${q.category}</div>
+      <div class="actions-bar">
+        <button onclick="shareText('Quote',\`${q.text}\`)">Share</button>
+        <button onclick="generateInstaPost('${escapeHTML(q.text)}')">Insta Post</button>
+        <button onclick="downloadQuote('${escapeHTML(q.text)}')">Download</button>
+      </div>
+    </div>
+    `).join('');
+    }
+
+    // === STORIES PAGE ===
+    let storiesPage = 0;
+    function renderStoriesGrid() {
+      const cont = document.getElementById("page-stories");
+      const perPage = 5;
+      let start = storiesPage * perPage;
+      let pageStories = stories.slice(start, start + perPage);
+      cont.innerHTML = `
+    <div class="section-title">📚 Emotional Story Corner</div>
+    <div class="stories-grid" id="stories-grid">
+      ${pageStories.map(story => `
+        <div class="card">
+          <div class="story-title">${story.title} <span class="emoji">${story.emoji}</span></div>
+          <div class="story-preview">${story.preview}</div>
+          <button class="read-more" onclick="showFullStory(${story.id})">Read more</button>
+          <div class="reaction-bar">
+            <span onclick="incReaction(${story.id},'story','love')">❤️ ${story.reactions.love}</span>
+            <span onclick="incReaction(${story.id},'story','cry')">😭 ${story.reactions.cry}</span>
+            <span onclick="incReaction(${story.id},'story','fire')">🔥 ${story.reactions.fire}</span>
+            <span onclick="incReaction(${story.id},'story','thought')">💭 ${story.reactions.thought}</span>
+          </div>
+        </div>`).join("")}
+    </div>
+    ${stories.length > perPage ? `<div style="text-align:center;margin:.9em 0;">
+      <button ${storiesPage == 0 ? 'disabled' : ''} onclick="storiesPage--;renderStoriesGrid();">Prev</button>
+      <span>Page ${storiesPage + 1}/${Math.ceil(stories.length / perPage)}</span>
+      <button ${(storiesPage + 1) * perPage >= stories.length ? 'disabled' : ''} onclick="storiesPage++;renderStoriesGrid();">Next</button>
+    </div>` : ""}
+    `;
+    }
+    function showFullStory(id) {
+      const story = stories.find(s => s.id == id);
+      if (!story) return;
+      alert(`${story.title} ${story.emoji}\n\n${story.content}`);
+    }
+
+    // === VAULT PAGE ===
+    let vaultUnlocked = false;
+    function renderVault() {
+      const cont = document.getElementById("page-vault");
+      if (!vaultUnlocked) {
+        cont.innerHTML = `
+      <div class="vault-locked">
+        <span style="font-size:2em;">🔒</span><br/>
+        Pay <b>₹29</b> via Razorpay/GPay to unlock our rawest, darkest confessions.<br/>
+        <button class="vault-btn" onclick="payVault()">Pay & Unlock</button>
+        <div style="font-size:.92em;opacity:.8;margin-top:0.8em;">(Demo: This button unlocks vault instantly. No real payment required.)</div>
+      </div>
+      `;
+      } else {
+        cont.innerHTML = `
+      <div class="section-title">Secret Vault: Most Viral Confessions</div>
+      <div class="vault-list">
+        ${vaultConfessions.map(c => `
+          <div class="card"><span class="emoji">${c.emoji}</span> ${c.text}</div>
+        `).join("")}
+      </div>
+      `;
+      }
+    }
+    function payVault() {
+      setTimeout(() => {
+        alert("Payment success (demo). Vault Unlocked!");
+        vaultUnlocked = true;
+        renderVault();
+      }, 800);
+    }
+
+    // === REACTIONS ===
+    function incReaction(id, type, key) {
+      let tArr = type == "confession" ? confessions : stories;
+      let obj = tArr.find(x => x.id == id);
+      if (obj && obj.reactions && typeof obj.reactions[key] != "undefined") {
+        obj.reactions[key]++;
+        setTimeout(() => setTab(type == "confession" ? "home" : "stories"), 80);
+      }
+    }
+
+    // === SHARE / DOWNLOAD / INSTA POST IMAGE GENERATION ===
+    function shareText(ref, text) {
+      if (navigator.share) {
+        navigator
+          .share({ title: "SnapTalks " + ref, text })
+          .catch(() => { });
+      } else {
+        copyToClipboard(text);
+        alert("Copied to clipboard! Paste to Instagram, WhatsApp, etc.");
+      }
+    }
+    function copyToClipboard(txt) {
+      const el = document.createElement("textarea");
+      el.value = txt;
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand("copy");
+      document.body.removeChild(el);
+    }
+
+    function generateInstaPost(quote) {
+      makeQuoteCanvas(quote, function (imgUrl) {
+        showModal(imgUrl);
+      });
+    }
+    function downloadQuote(quote) {
+      makeQuoteCanvas(quote, function (imgUrl) {
+        let a = document.createElement("a");
+        a.href = imgUrl;
+        a.download = "SnapTalks-quote.png";
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(() => {
+          document.body.removeChild(a);
+        }, 300);
+      });
+    }
+    function makeQuoteCanvas(text, cb) {
+      let c = document.createElement("canvas"),
+        w = 550,
+        h = 550;
+      c.width = w;
+      c.height = h;
+      let ctx = c.getContext("2d");
+      let grad = ctx.createLinearGradient(0, 0, w, h);
+      grad.addColorStop(0, "#f9e5ef");
+      grad.addColorStop(1, "#a18cd1");
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, w, h);
+      ctx.fillStyle = "#fff";
+      roundRect(ctx, 30, 90, w - 60, h - 160, 38, true, false);
+      ctx.font = "bold 27px Poppins, sans-serif";
+      ctx.fillStyle = "#252525";
+      let y = 190,
+        words = text.split(" "),
+        line = "",
+        lines = [];
+      for (let word of words) {
+        let test = line + word + " ";
+        if (ctx.measureText(test).width < w - 130) {
+          line = test;
+        } else {
+          lines.push(line);
+          line = word + " ";
+        }
+      }
+      lines.push(line);
+      lines = lines.slice(0, 7);
+      for (let ln of lines) {
+        ctx.fillText(ln.trim(), 60, y);
+        y += 40;
+      }
+      ctx.font = "17px Poppins, sans-serif";
+      ctx.fillStyle = "#b087d4";
+      ctx.fillText("SnapTalks.in", w - 180, h - 50);
+      cb(c.toDataURL());
+    }
+    function roundRect(ctx, x, y, w, h, r, fill, stroke) {
+      ctx.beginPath();
+      ctx.moveTo(x + r, y);
+      ctx.arcTo(x + w, y, x + w, y + h, r);
+      ctx.arcTo(x + w, y + h, x, y + h, r);
+      ctx.arcTo(x, y + h, x, y, r);
+      ctx.arcTo(x, y, x + w, y, r);
+      ctx.closePath();
+      if (fill) ctx.fill();
+      if (stroke) ctx.stroke();
+    }
+    function showModal(imgUrl) {
+      document.getElementById("modal-img").src = imgUrl;
+      document.getElementById("modal-bg").classList.add("active");
+    }
+    function closeModal() {
+      document.getElementById("modal-bg").classList.remove("active");
+    }
+    function downloadModalImg() {
+      let url = document.getElementById("modal-img").src;
+      let a = document.createElement("a");
+      a.href = url;
+      a.download = "SnapTalks-instapost.png";
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(() => {
+        document.body.removeChild(a);
+      }, 400);
+    }
+
+    // === UTILITIES ===
+    function escapeHTML(str) {
+      return (str + "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
+    // === INITIALIZE ===
+    setTab("home");
+  </script>
+</body>
+</html>

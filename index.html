@@ -24,21 +24,37 @@
       min-height: 100vh;
       letter-spacing: 0.01em;
     }
+    /* HEADER WITH LOGO AND TITLE */
     header {
       background: rgba(255, 255, 255, 0.85);
-      text-align: center;
-      padding: 1.5em 0 1em 0;
+      padding: 1.2em 1em 1em 1em;
       box-shadow: var(--shadow);
       position: sticky;
       top: 0;
       z-index: 11;
+      text-align: center;
+    }
+    header div.logo-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    header img.logo {
+      height: 64px;
+      border-radius: 16px;
+      box-shadow: 0 2px 10px #a18cd12f;
+      background: #fff;
+      user-select: none;
     }
     header h1 {
       color: var(--purple);
       font-weight: 700;
-      font-size: 2em;
-      letter-spacing: 0.03em;
+      font-size: 1.9em;
       margin: 0;
+      letter-spacing: 0.03em;
+      user-select: none;
     }
     nav {
       margin: 1em 0 0.5em 0;
@@ -59,6 +75,7 @@
       margin-bottom: 0.5em;
       outline: none;
       transition: background 0.2s;
+      user-select: none;
     }
     nav button.active,
     nav button:hover {
@@ -77,6 +94,7 @@
       border-radius: 16px;
       margin: 10px 0;
       border: 1px dashed #f6d1f1;
+      user-select: none;
     }
     .container {
       max-width: 710px;
@@ -100,12 +118,14 @@
       font-size: 1.7em;
       margin-right: 0.6em;
       vertical-align: middle;
+      user-select: none;
     }
     .section-title {
       font-size: 1.28em;
       font-weight: 600;
       margin-top: 1.4em;
       color: var(--purple);
+      user-select: none;
     }
     .confessions-list,
     .quotes-grid,
@@ -127,6 +147,7 @@
       font-weight: 500;
       border-radius: 10px;
       user-select: none;
+      transition: background 0.18s;
     }
     .reaction-bar span:hover {
       background: #f5f1f7;
@@ -149,6 +170,7 @@
       font-size: 0.98em;
       outline: none;
       transition: background 0.19s;
+      user-select: none;
     }
     .actions-bar button:hover,
     .insta-btn:hover {
@@ -168,6 +190,7 @@
       gap: 0.9em;
       justify-content: center;
       word-break: break-word;
+      user-select: none;
     }
     /* Carousel */
     .carousel {
@@ -223,11 +246,14 @@
       display: flex;
       align-items: center;
       gap: 0.5em;
+      user-select: none;
     }
     .featured-story .story-content {
       color: #343;
       font-size: 0.99em;
       margin-bottom: 0.3em;
+      white-space: pre-wrap;
+      user-select: text;
     }
     .read-more {
       border: none;
@@ -239,6 +265,7 @@
       cursor: pointer;
       margin-top: 0.5em;
       user-select: none;
+      white-space: nowrap;
     }
     .reel-card {
       margin: 1.4em auto;
@@ -260,6 +287,7 @@
       width: 60px;
       height: 60px;
       object-fit: cover;
+      user-select: none;
     }
     .reel-card a {
       color: var(--pink);
@@ -340,9 +368,10 @@
     }
     .form-box label {
       font-weight: 500;
+      user-select: none;
     }
     .form-box textarea,
-    .form-box input[type='text'] {
+    .form-box input[type="text"] {
       width: 100%;
       border-radius: 18px;
       border: 1.4px solid #e8bddd;
@@ -413,6 +442,8 @@
       margin-top: 0.6em;
       color: #202;
       font-size: 1em;
+      white-space: pre-wrap;
+      user-select: text;
     }
     .off-topic-box {
       background: #fff9fc;
@@ -429,6 +460,7 @@
       align-items: center;
       gap: 0.7em;
       word-break: break-word;
+      user-select: text;
     }
     .off-topic-box .tag {
       background: #ddd2e7;
@@ -477,19 +509,18 @@
       padding: 1.2em 1em 1em 1.12em;
       margin-bottom: 1.4em;
       word-break: break-word;
+      user-select: text;
     }
     .info-section h3,
     .people-say-section h3 {
       margin-top: 0;
       color: var(--purple);
-      user-select: none;
     }
     .people-say-sub {
       color: #b76b8b;
       font-style: italic;
       font-size: 0.99em;
       margin-bottom: 0.6em;
-      user-select: none;
     }
     footer {
       margin-top: 2.4em;
@@ -544,6 +575,7 @@
       display: none;
       align-items: center;
       justify-content: center;
+      user-select: none;
     }
     .modal-bg.active {
       display: flex;
@@ -556,8 +588,8 @@
       text-align: center;
       position: relative;
       max-width: 90vw;
-      word-break: break-word;
       user-select: none;
+      word-break: break-word;
     }
     .modal-content img {
       max-width: 340px;
@@ -618,7 +650,10 @@
 </head>
 <body>
   <header>
-    <h1>SnapTalks – Feel. Confess. Inspire.</h1>
+    <div class="logo-title">
+      <img src="C:\Users\Rishi\OneDrive\Desktop\anonumous\logo.jpg.png" alt="SnapTalks Logo" class="logo" />
+      <h1>SnapTalks – Feel. Confess. Inspire.</h1>
+    </div>
     <nav>
       <button class="tab-btn active" data-tab="home">🏡 Home</button>
       <button class="tab-btn" data-tab="submit">📝 Submit</button>
@@ -630,10 +665,10 @@
   <div class="adsense-top" id="adsense-top">[AdSense Banner]</div>
   <div class="container">
     <div id="page-home" class="tab-page"></div>
-    <div id="page-submit" class="tab-page" style="display:none"></div>
-    <div id="page-quotes" class="tab-page" style="display:none"></div>
-    <div id="page-stories" class="tab-page" style="display:none"></div>
-    <div id="page-vault" class="tab-page" style="display:none"></div>
+    <div id="page-submit" class="tab-page" style="display: none"></div>
+    <div id="page-quotes" class="tab-page" style="display: none"></div>
+    <div id="page-stories" class="tab-page" style="display: none"></div>
+    <div id="page-vault" class="tab-page" style="display: none"></div>
   </div>
   <div class="adsense-bottom" id="adsense-bottom">[AdSense Footer]</div>
   <!-- Insta Post Modal -->
@@ -657,9 +692,8 @@
       <a href="https://www.amazon.in/dp/B0BKTZRHHV" target="_blank" rel="noopener noreferrer">Buy Love Journal</a> (affiliate) – Write your feelings privately.
     </div>
   </footer>
-
   <script>
-    // ========== SAMPLE DATA ===================
+    // Sample data arrays with Telugu content added
     const confessions = [
       { id: 1, text: "I secretly love my best friend. ❤️", emoji: "❤️", reactions: { love: 504, cry: 34, fire: 121, thought: 42 } },
       { id: 2, text: "Sometimes I cry myself to sleep.", emoji: "😭", reactions: { love: 144, cry: 322, fire: 12, thought: 99 } },
@@ -668,7 +702,9 @@
       { id: 5, text: "I wish my parents understood my pain.", emoji: "😔", reactions: { love: 135, cry: 143, fire: 22, thought: 84 } },
       { id: 6, text: "I’m scared everyone will leave me.", emoji: "😢", reactions: { love: 115, cry: 139, fire: 14, thought: 62 } },
       { id: 7, text: "I pretend to be tough but I feel so alone.", emoji: "🥀", reactions: { love: 99, cry: 201, fire: 9, thought: 71 } },
-      { id: 8, text: "I still wait for a text that will never come.", emoji: "💭", reactions: { love: 110, cry: 109, fire: 12, thought: 58 } }
+      { id: 8, text: "I still wait for a text that will never come.", emoji: "💭", reactions: { love: 110, cry: 109, fire: 12, thought: 58 } },
+      { id: 9, text: "నువ్వు నాకు ఎంత ముఖ్యమో చెప్పలేను.", emoji: "💜", reactions: { love: 77, cry: 5, fire: 12, thought: 6 } },
+      { id: 10, text: "ఎవరికి చెప్పుకోలేని బాధలు నా లోపలే ఉన్నాయి.", emoji: "😔", reactions: { love: 44, cry: 33, fire: 0, thought: 9 } }
     ];
     const quotes = [
       { id: 1, text: "Real love is crying, fighting, yet never giving up.", category: "Love", emoji: "💞" },
@@ -680,7 +716,8 @@
       { id: 7, text: "Never beg for a spot in someone’s life.", category: "Sad", emoji: "✨" },
       { id: 8, text: "Chinndaga unnappude gelavalani korikalu ekkuva.", category: "Telugu", emoji: "🌸" },
       { id: 9, text: "Forgive yourself for the love you gave to the wrong people.", category: "Life", emoji: "🤍" },
-      { id: 10, text: "Nijamaina prema oka nimisham lo maaradu.", category: "Telugu", emoji: "🌼" }
+      { id: 10, text: "Nijamaina prema oka nimisham lo maaradu.", category: "Telugu", emoji: "🌼" },
+      { id: 11, text: "ప్రేమనీ భావాలు మాటల్లో చెప్పలేను.", category: "Telugu", emoji: "💖" }
     ];
     const stories = [
       { id: 1, title: "Unsent Letters", preview: "Every morning I rewrite the text...", content: "Every morning I rewrite the text, but never send it — just to feel closeness, even if just in my head.", emoji: "✉️", reactions: { love: 320, cry: 42, fire: 11, thought: 23 } },
@@ -712,7 +749,6 @@
       { id: 19, text: "I miss you even though you never noticed.", emoji: "🍃" },
       { id: 20, text: "If only tears could speak.", emoji: "🥲" }
     ];
-    // Off-topic (fun unrelated posts)
     const sayOffTopic = [
       'I love biryani more than anything!',
       'Today my phone fell in water 😭',
@@ -721,17 +757,14 @@
       'Did anyone watch the cricket final?',
       'Why is Monday so long...'
     ];
-    // Insta Reels/Post sample placeholders
     const sampleReels = [
       { img: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=300&q=80", text: "Love heals. Cry, but don’t quit.", link: "https://instagram.com/snapTalks.in" },
       { img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=300&q=80", text: "Your pain can inspire someone.", link: "https://instagram.com/snapTalks.in" },
       { img: "https://images.unsplash.com/photo-1519985176271-adb1088fa94c?auto=format&fit=crop&w=300&q=80", text: "Let feelings flow. #snapTalks", link: "https://instagram.com/snapTalks.in" }
     ];
-
-    // Combined for daily "Post of the Day"
     const samplePostOfDay = [...confessions, ...quotes].sort(() => Math.random() - 0.5)[0];
-
-    // === TAB NAVIGATION ===
+    
+    /* --- TAB NAVIGATION --- */
     const tabBtns = document.querySelectorAll(".tab-btn");
     const tabs = ["home", "submit", "quotes", "stories", "vault"];
     tabBtns.forEach((btn) => {
@@ -751,8 +784,8 @@
       if (tab === "home") renderHome();
       if (tab === "submit") setupSubmitForms();
     }
-
-    // === USER POSTS (24h localStorage) ===
+    
+    /* --- USER SUBMITTED POSTS STORED & SHOWN 24H --- */
     function getRecentUserPosts() {
       let posts = [];
       try {
@@ -761,7 +794,6 @@
         posts = [];
       }
       const now = Date.now();
-      // Remove expired from storage
       let changed = false;
       posts = posts.filter((p) => {
         let ok = now - p.ts < 86400000;
@@ -772,7 +804,7 @@
       return posts;
     }
 
-    // === HOME PAGE ===
+    /* --- HOME --- */
     function renderHome() {
       const container = document.getElementById("page-home");
       const trending = [...confessions].sort(() => Math.random() - 0.5).slice(0, 6);
@@ -787,12 +819,12 @@
       <div class="section-title">🆕 Submitted by You (visible on this device for 24h)</div>
       <div class="confessions-list">
       ${recentPosts
-        .slice()
-        .reverse()
-        .map((p) => {
-          let mainTxt = escapeHTML(p.text || p.title || "");
-          let postType = (p.type || "confess").toUpperCase();
-          return `
+          .slice()
+          .reverse()
+          .map((p) => {
+            let mainTxt = escapeHTML(p.text || p.title || "");
+            let postType = (p.type || "confess").toUpperCase();
+            return `
         <div class="card">
           <div><span class="emoji">${p.emoji || "💬"}</span>
             <span>${mainTxt}</span>
@@ -800,11 +832,11 @@
           </div>
           <div class="actions-bar">
             <button onclick="shareText('UserPost',\`${mainTxt}\`)">Share</button>
-            <button onclick="generateInstaPost('${mainTxt.replace(/'/g, "").replace(/\n/g, " ")}')">Insta Post</button>
+            <button onclick="generateInstaPost('${mainTxt.replace(/'/g, '').replace(/\n/g, ' ')}')">Insta Post</button>
           </div>
         </div>`;
-        })
-        .join("")}
+          })
+          .join("")}
       </div>`;
       }
       container.innerHTML = `
@@ -817,8 +849,8 @@
     <div class="section-title">🔥 Trending Confessions</div>
     <div class="confessions-list">
       ${trending
-        .map(
-          (c) => `
+          .map(
+            (c) => `
         <div class="card">
           <div><span class="emoji">${c.emoji}</span> <span>${c.text}</span></div>
           <div class="reaction-bar">
@@ -831,8 +863,8 @@
             <button onclick="shareText('Confession', \`${c.text}\`)">Share</button>
           </div>
         </div>`
-        )
-        .join("")}
+          )
+          .join("")}
     </div>
     <div class="section-title">💬 Daily Love & Pain Quotes</div>
     <div class="carousel" id="quote-carousel"></div>
@@ -867,7 +899,7 @@
       setupQuoteCarousel(dailyQuotes);
     }
 
-    // === QUOTES CAROUSEL ON HOME ===
+    /* -- Quote Carousel on Home -- */
     function setupQuoteCarousel(quotesList) {
       let idx = 0;
       const el = document.getElementById("quote-carousel");
@@ -896,7 +928,7 @@
       render();
     }
 
-    // === SUBMIT PAGE ===
+    /* --- SUBMIT PAGE --- */
     let submitTab = "confess";
     function setupSubmitForms() {
       const cont = document.getElementById("page-submit");
@@ -955,9 +987,11 @@
     <div id="form-success"></div>
     `;
       let sel = emojiList[0];
+      let selHtml = "";
       for (const e of emojiList) {
-        document.getElementById("emoji-selector").innerHTML += `<span class="${e == sel ? "selected" : ""}" onclick="chooseEmoji(this,'${e}')">${e}</span>`;
+        selHtml += `<span class="${e == sel ? "selected" : ""}" onclick="chooseEmoji(this,'${e}')">${e}</span>`;
       }
+      document.getElementById("emoji-selector").innerHTML = selHtml;
       window._chosenEmoji = sel;
     }
     function chooseEmoji(el, emoji) {
@@ -1005,7 +1039,7 @@
       renderOffTopicList();
     }
 
-    // === QUOTES PAGE ===
+    // QUOTES PAGE
     let quotesFilter = "All";
     function renderQuotesGrid() {
       const cont = document.getElementById("page-quotes");
@@ -1045,7 +1079,7 @@
     `).join('');
     }
 
-    // === STORIES PAGE ===
+    // STORIES PAGE
     let storiesPage = 0;
     function renderStoriesGrid() {
       const cont = document.getElementById("page-stories");
@@ -1081,7 +1115,7 @@
       alert(`${story.title} ${story.emoji}\n\n${story.content}`);
     }
 
-    // === VAULT PAGE ===
+    // VAULT PAGE
     let vaultUnlocked = false;
     function renderVault() {
       const cont = document.getElementById("page-vault");
@@ -1113,7 +1147,7 @@
       }, 800);
     }
 
-    // === REACTIONS ===
+    // REACTIONS
     function incReaction(id, type, key) {
       let tArr = type == "confession" ? confessions : stories;
       let obj = tArr.find(x => x.id == id);
@@ -1123,7 +1157,7 @@
       }
     }
 
-    // === SHARE / DOWNLOAD / INSTA POST IMAGE GENERATION ===
+    // SHARE / DOWNLOAD / INSTA IMAGE GENERATION
     function shareText(ref, text) {
       if (navigator.share) {
         navigator
@@ -1167,19 +1201,27 @@
       c.width = w;
       c.height = h;
       let ctx = c.getContext("2d");
+
+      // Background gradient
       let grad = ctx.createLinearGradient(0, 0, w, h);
       grad.addColorStop(0, "#f9e5ef");
       grad.addColorStop(1, "#a18cd1");
       ctx.fillStyle = grad;
       ctx.fillRect(0, 0, w, h);
+
+      // White rounded rectangle
       ctx.fillStyle = "#fff";
       roundRect(ctx, 30, 90, w - 60, h - 160, 38, true, false);
+
+      // Text
       ctx.font = "bold 27px Poppins, sans-serif";
       ctx.fillStyle = "#252525";
+
       let y = 190,
         words = text.split(" "),
         line = "",
         lines = [];
+
       for (let word of words) {
         let test = line + word + " ";
         if (ctx.measureText(test).width < w - 130) {
@@ -1195,11 +1237,26 @@
         ctx.fillText(ln.trim(), 60, y);
         y += 40;
       }
+
+      // Footer text
       ctx.font = "17px Poppins, sans-serif";
       ctx.fillStyle = "#b087d4";
       ctx.fillText("SnapTalks.in", w - 180, h - 50);
-      cb(c.toDataURL());
+
+      // Draw logo watermark (50x50 px bottom right)
+      let logo = new Image();
+      logo.onload = function () {
+        ctx.globalAlpha = 0.82;
+        ctx.drawImage(logo, w - 80, h - 80, 50, 50);
+        ctx.globalAlpha = 1.0;
+        cb(c.toDataURL());
+      };
+      logo.onerror = function () {
+        cb(c.toDataURL());
+      };
+      logo.src = "C:\Users\Rishi\OneDrive\Desktop\anonumous\logo.jpg.png";
     }
+
     function roundRect(ctx, x, y, w, h, r, fill, stroke) {
       ctx.beginPath();
       ctx.moveTo(x + r, y);
@@ -1230,7 +1287,7 @@
       }, 400);
     }
 
-    // === UTILITIES ===
+    // UTILITIES
     function escapeHTML(str) {
       return (str + "")
         .replace(/&/g, "&amp;")
@@ -1240,7 +1297,7 @@
         .replace(/'/g, "&#39;");
     }
 
-    // === INITIALIZE ===
+    // INIT
     setTab("home");
   </script>
 </body>
